@@ -1,0 +1,396 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="bg-gray-100 py-6 md:py-[3.5rem]">
+  <div class="fixed-side-padding w-full">
+
+    <!-- Heading -->
+    <h2 class="text-4xl font-bold text-gray-900 mb-8 md:mb-12">
+      Frequently Asked Questions
+    </h2>
+
+    <!-- FAQ Container -->
+    <div class="space-y-3">
+
+      <!-- FAQ ITEM -->
+      <div class="faq-item bg-blue-900 text-white rounded-xl overflow-hidden">
+        <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center px-4 md:px-6 py-2 md:py-4 text-left font-semibold text-base md:text-lg">
+          1. What types of freight shipping do you offer?
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="faq-content hidden bg-white text-gray-800 px-4 md:px-6 py-3 md:py-5 text-m leading-relaxed">
+          We offer a range of shipping options, including LTL (Less-than-Truckload), Full Truckload (FTL), expedited shipping, parcel shipping, and heavy/oversized freight. We also provide custom solutions tailored to specific shipping needs.
+        </div>
+      </div>
+
+      <div class="faq-item bg-blue-900 text-white rounded-xl overflow-hidden">
+        <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center px-4 md:px-6 py-2 md:py-4 text-left font-semibold text-base md:text-lg">
+          2. How do I get a shipping quote?
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="faq-content hidden bg-white text-gray-800 px-4 md:px-6 py-3 md:py-5 text-m">
+          You can easily get a freight quote by using our online quote tool. Simply enter the shipment details, such as weight, dimensions, origin, and destination, and you’ll receive an instant quote.
+        </div>
+      </div>
+
+      <div class="faq-item bg-blue-900 text-white rounded-xl overflow-hidden">
+        <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center px-4 md:px-6 py-2 md:py-4 text-left font-semibold text-base md:text-lg">
+          3. What if my shipment is delayed?
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="faq-content hidden bg-white text-gray-800 px-4 md:px-6 py-3 md:py-5 text-m">
+          We work with trusted carriers to ensure timely deliveries. If there are any delays, we’ll notify you immediately and provide updated tracking information so you can stay informed.
+        </div>
+      </div>
+
+      <div class="faq-item bg-blue-900 text-white rounded-xl overflow-hidden">
+        <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center px-4 md:px-6 py-2 md:py-4 text-left font-semibold text-base md:text-lg">
+          4. Do you offer tracking for shipments?
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="faq-content hidden bg-white text-gray-800 px-4 md:px-6 py-3 md:py-5 text-m">
+          Yes, we offer real-time tracking for all shipments. You can track your freight easily through our online portal by entering your tracking number.
+        </div>
+      </div>
+
+      <div class="faq-item bg-blue-900 text-white rounded-xl overflow-hidden">
+        <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center px-4 md:px-6 py-2 md:py-4 text-left font-semibold text-base md:text-lg">
+          5. Do you offer insurance for shipments?
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="faq-content hidden bg-white text-gray-800 px-4 md:px-6 py-3 md:py-5 text-m">
+          Yes, we offer various insurance options to protect your goods during transit. You can select the level of coverage based on the value and type of your shipment.
+        </div>
+      </div>
+
+      <div class="faq-item bg-blue-900 text-white rounded-xl overflow-hidden">
+        <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center px-4 md:px-6 py-2 md:py-4 text-left font-semibold text-base md:text-lg">
+          6. How do I arrange a pickup for my shipment?
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="faq-content hidden bg-white text-gray-800 px-4 md:px-6 py-3 md:py-5 text-m">
+          Once you’ve booked your shipment, you can schedule a pickup through our platform. Our team will coordinate the pickup details with the carrier to ensure a smooth process.
+        </div>
+      </div>
+
+      <div class="faq-item bg-blue-900 text-white rounded-xl overflow-hidden">
+        <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center px-4 md:px-6 py-2 md:py-4 text-left font-semibold text-base md:text-lg">
+          7. Can I change or cancel my shipment after booking?
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="faq-content hidden bg-white text-gray-800 px-4 md:px-6 py-3 md:py-5 text-m">
+          Yes, changes or cancellations can be made within a specified timeframe. Please contact our customer support team immediately to discuss the options available.
+        </div>
+      </div>
+
+      <div class="faq-item bg-blue-900 text-white rounded-xl overflow-hidden">
+        <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center px-4 md:px-6 py-2 md:py-4 text-left font-semibold text-base md:text-lg">
+          8. Are there any restrictions on what I can ship?
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="faq-content hidden bg-white text-gray-800 px-4 md:px-6 py-3 md:py-5 text-m">
+          Certain items, such as hazardous materials, perishable goods, and prohibited items, may be restricted. Please review our shipping guidelines or reach out to our support team for specific restrictions.
+        </div>
+      </div>
+
+      <div class="faq-item bg-blue-900 text-white rounded-xl overflow-hidden">
+        <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center px-4 md:px-6 py-2 md:py-4 text-left font-semibold text-base md:text-lg">
+          9. How do I know which shipping method is best for me?
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="faq-content hidden bg-white text-gray-800 px-4 md:px-6 py-3 md:py-5 text-m">
+          Our team of logistics experts can help guide you through selecting the best shipping method based on the size, weight, and urgency of your shipment.
+        </div>
+      </div>
+
+      <div class="faq-item bg-blue-900 text-white rounded-xl overflow-hidden">
+        <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center px-4 md:px-6 py-2 md:py-4 text-left font-semibold text-base md:text-lg">
+          10. How are shipping rates calculated?
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="faq-content hidden bg-white text-gray-800 px-4 md:px-6 py-3 md:py-5 text-m">
+          Shipping rates are determined by factors such as size, weight, destination, shipping method, and additional services like insurance or expedited shipping.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- JS -->
+<script>
+function toggleFAQ(button) {
+  const content = button.parentElement.querySelector('.faq-content');
+  const icon = button.querySelector('span');
+
+  content.classList.toggle('hidden');
+
+  if (content.classList.contains('hidden')) {
+    icon.textContent = '+';
+  } else {
+    icon.textContent = '−';
+  }
+}
+</script>
+
+    <!-- Features Section -->
+<section class="bg-[#16428c] py-8">
+    <div class="fixed-side-padding">                    <!-- Fixed 5rem padding -->
+    
+    <div class="text-left text-white mb-6">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-left md:text-center">
+        Freight Shipping Built for Your Needs
+        </h2>
+        <p class="text-m md:text-lg leading-relaxed opacity-95 max-w-5xl mx-auto text-left md:text-center">
+        Shipping freight doesn’t have to be a hassle. At LGG Auto Parts, we focus on creating practical, efficient solutions for businesses of all sizes. 
+        From ensuring timely deliveries to offering personalized logistics support, we adapt to meet the demands of your growing enterprise. 
+        Trust us to handle your freight with care, precision, and unmatched reliability.
+        </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+        
+        <!-- Card 1 -->
+        <div class="bg-white rounded-2xl p-6 md:p-8 text-center shadow-sm hover:shadow-md transition-all duration-300">
+            <div class="flex justify-center mb-6">
+                <img src="https://flagcdn.com/w160/us.png" alt="USA Flag" 
+                      class="h-12 md:h-16 w-auto">
+            </div>
+            <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-3">Nationwide Coverage</h3>
+            <p class="text-gray-600 leading-relaxed text-base">
+                Ship anywhere in the USA with our reliable network of freight professionals.
+            </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white rounded-2xl p-6 md:p-8 text-center shadow-sm hover:shadow-md transition-all duration-300">
+            <div class="flex justify-center mb-6">
+                <i class="fas fa-truck text-5xl md:text-6xl text-[#16428c]"></i>
+            </div>
+            <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-3">Speed You Can Count On</h3>
+            <p class="text-gray-600 leading-relaxed text-base">
+                Choose expedited services to meet tight deadlines without sacrificing quality.
+            </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white rounded-2xl p-6 md:p-8 text-center shadow-sm hover:shadow-md transition-all duration-300">
+            <div class="flex justify-center mb-6">
+                <i class="fas fa-user-cog text-5xl md:text-6xl text-[#16428c]"></i>
+            </div>
+            <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-3">Expert Support at Every Step</h3>
+            <p class="text-gray-600 leading-relaxed text-base">
+                Work with logistics specialists who guide you from quote to delivery.
+            </p>
+        </div>
+
+    </div>
+
+    </div>
+</section>
+
+<section class="py-8 bg-white">
+    <div class="fixed-side-padding">
+        
+        <!-- Main Card -->
+        <div class="bg-white shadow-lg rounded-2xl overflow-hidden">
+            
+            <!-- Header + Description -->
+            <div class="p-6 md:p-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                    Why LGG Auto Parts?
+                </h2>
+                
+                <p class="text-base md:text-lg text-gray-700 leading-relaxed">
+                    When it comes to freight shipping, LGG Auto Parts stands out because of our unwavering dedication to quality, 
+                    efficiency, and customer satisfaction. We offer nationwide coverage, ensuring your shipments reach every corner 
+                    of the United States with ease. Our experienced team of logistics professionals works tirelessly to ensure that 
+                    your cargo is handled safely and delivered on time. With real-time tracking and a range of customizable services, 
+                    we provide full visibility and control over your shipments. Plus, our competitive rates and reliable carriers 
+                    mean that you can save on costs without compromising on service quality. Choose LGG Auto Parts and experience 
+                    hassle-free, efficient shipping every time.
+                </p>
+            </div>
+
+            <!-- Features Bar -->
+            <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-6 md:py-5 px-6 md:px-8 flex flex-wrap justify-center gap-x-8 gap-y-4 text-center border-t border-b border-white/20">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl md:text-3xl">⭐</span>
+                    <span class="font-semibold text-base md:text-lg">24/7 Support</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl md:text-3xl">⭐</span>
+                    <span class="font-semibold text-base md:text-lg">Competitive Rates</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl md:text-3xl">⭐</span>
+                    <span class="font-semibold text-base md:text-lg">Reliability and Trust</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl md:text-3xl">⭐</span>
+                    <span class="font-semibold text-base md:text-lg">On-Time Delivery Guarantee</span>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200 pt-8 md:pt-0">
+                
+                <!-- Stat 1 -->
+                <div class="bg-[#1e40af] text-white p-6 md:p-8 text-center">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">20K+</div>
+                    <div class="text-lg md:text-xl font-semibold mb-3">Shipping Experts</div>
+                    <p class="text-blue-100 text-sm leading-relaxed">
+                        Our network is rigorously vetted to ensure fast and secure deliveries.
+                    </p>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="bg-[#1e40af] text-white p-6 md:p-8 text-center">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">100+</div>
+                    <div class="text-lg md:text-xl font-semibold mb-3">Loyal Businesses</div>
+                    <p class="text-blue-100 text-sm leading-relaxed">
+                        Trusted by companies across industries for seamless shipping solutions.
+                    </p>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="bg-[#1e40af] text-white p-6 md:p-8 text-center">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">50K+</div>
+                    <div class="text-lg md:text-xl font-semibold mb-3">Happy Clients</div>
+                    <p class="text-blue-100 text-sm leading-relaxed">
+                        Serving businesses of all sizes with tailored solutions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Slideshow Section -->
+<section class="py-8 bg-[#16428c]">
+    <div class="fixed-side-padding">
+        
+        <div class="text-center mb-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-white-900" style="color: ghostwhite;">Customer Reviews</h2>
+            <p class="text-gray-600 mt-3 text-m md:text-lg" style="color: darkgray;">What our clients say about LGG Auto Parts shipping</p>
+        </div>
+
+        <!-- Slideshow Container -->
+        <div id="testimonial-slider" class="relative max-w-4xl mx-auto">
+            
+            <!-- Testimonial Cards -->
+            <div id="slides" class="relative overflow-hidden rounded-3xl">
+                
+                <!-- Slide 1 -->
+                <div class="slide min-h-[380px] bg-white rounded-3xl p-10 shadow-lg flex flex-col items-center text-center transition-all duration-500">
+                    <img src="https://i.pravatar.cc/150?img=12" 
+                          alt="John Doe" 
+                          class="w-24 h-24 rounded-full border-4 border-[#16428c] mb-6">
+                    <div class="text-3xl md:text-4xl text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-700 text-m md:text-lg leading-relaxed italic mb-8 max-w-md">
+                        "LGG Auto Parts made shipping my auto parts so easy and affordable. 
+                        The tracking was real-time and delivery was faster than expected. 
+                        Highly recommended!"
+                    </p>
+                    <h4 class="font-semibold text-xl text-gray-900">John Doe</h4>
+                    <p class="text-gray-500">Owner, Classic Auto Restoration</p>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide min-h-[380px] bg-white rounded-3xl p-10 shadow-lg flex flex-col items-center text-center transition-all duration-500 hidden">
+                    <img src="https://i.pravatar.cc/150?img=47" 
+                          alt="Sarah Miller" 
+                          class="w-24 h-24 rounded-full border-4 border-[#16428c] mb-6">
+                    <div class="text-3xl md:text-4xl text-yellow-400 mb-4">★★★★☆</div>
+                    <p class="text-gray-700 text-m md:text-lg leading-relaxed italic mb-8 max-w-md">
+                        "Excellent service! The team helped me find the best rates for a large shipment. 
+                        Everything arrived in perfect condition. Will definitely use them again."
+                    </p>
+                    <h4 class="font-semibold text-xl text-gray-900">Sarah Miller</h4>
+                    <p class="text-gray-500">Logistics Manager, Auto Parts Warehouse</p>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide min-h-[380px] bg-white rounded-3xl p-10 shadow-lg flex flex-col items-center text-center transition-all duration-500 hidden">
+                    <img src="https://i.pravatar.cc/150?img=64" 
+                          alt="Michael Chen" 
+                          class="w-24 h-24 rounded-full border-4 border-[#16428c] mb-6">
+                    <div class="text-3xl md:text-4xl text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-700 text-m md:text-lg leading-relaxed italic mb-8 max-w-md">
+                        "Fast quotes, professional support, and reliable delivery. 
+                        LGG has become our go-to freight partner for all our auto parts shipments."
+                    </p>
+                    <h4 class="font-semibold text-xl text-gray-900">Michael Chen</h4>
+                    <p class="text-gray-500">Procurement Head, Speed Motors</p>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button onclick="prevSlide()" 
+                    class="absolute left-4 top-1/2 -translate-y-1/2 bg-white p-4 rounded-full shadow-md hover:bg-gray-100 transition z-10">
+                <i class="fas fa-chevron-left text-[#16428c] text-xl"></i>
+            </button>
+            
+            <button onclick="nextSlide()" 
+                    class="absolute right-4 top-1/2 -translate-y-1/2 bg-white p-4 rounded-full shadow-md hover:bg-gray-100 transition z-10">
+                <i class="fas fa-chevron-right text-[#16428c] text-xl"></i>
+            </button>
+
+            <!-- Dots Indicator -->
+            <div class="flex justify-center gap-3 mt-8">
+                <button onclick="goToSlide(0)" class="dot w-3 h-3 bg-[#16428c] rounded-full transition"></button>
+                <button onclick="goToSlide(1)" class="dot w-3 h-3 bg-gray-300 hover:bg-gray-400 rounded-full transition"></button>
+                <button onclick="goToSlide(2)" class="dot w-3 h-3 bg-gray-300 hover:bg-gray-400 rounded-full transition"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(n) {
+        slides.forEach((slide, index) => {
+            slide.classList.add('hidden');
+            if (index === n) {
+                slide.classList.remove('hidden');
+            }
+        });
+
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('bg-[#16428c]', index === n);
+            dot.classList.toggle('bg-gray-300', index !== n);
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function goToSlide(n) {
+        currentSlide = n;
+        showSlide(currentSlide);
+    }
+
+    // Auto slide every 6 seconds
+    setInterval(() => {
+        nextSlide();
+    }, 6000);
+
+    // Initialize first slide
+    showSlide(0);
+</script>
+
+</section>
+
+{% endblock %}

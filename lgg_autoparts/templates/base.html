@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LGG Freights</title>
+  {% load static %}
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+  
+  <style>
+    .fixed-side-padding {
+      padding-left: 1.25rem;   /* smaller on mobile */
+      padding-right: 1.25rem;
+    }
+
+    @media (min-width: 1024px) {
+      .fixed-side-padding {
+        padding-left: 5rem;    /* 5rem = 80px */
+        padding-right: 5rem;
+      }
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body class="font-sans">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <a href="{% url 'home' %}" class="flex items-center">
+                    <img src="{% static 'images/LGG Logo.png' %}" 
+                        alt="LGG Freights Logo" 
+                        class="h-10 md:h-12 w-auto">
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="{% url 'home' %}" class="hover:text-[#16428c] transition">HOME</a>
+                <a href="{% url 'tracking:track_shipment' %}" class="hover:text-[#16428c] transition">TRACK</a>
+                <a href="{% url 'about' %}" class="hover:text-[#16428c] transition">ABOUT</a>
+                <a href="{% url 'contact' %}" class="hover:text-[#16428c] transition">CONTACT</a>
+                <a href="{% url 'faq' %}" class="hover:text-[#16428c] transition">FAQS</a>
+                <a href="{% url 'services' %}" class="hover:text-[#16428c] transition">SERVICES</a>
+                <a href="#" class="bg-[#16428c] text-white px-5 py-2 rounded font-medium hover:bg-[#0f2f66] transition">BOOK QUOTE</a>
+            </nav>
+
+            <!-- Right Side Icons -->
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-1 text-sm cursor-pointer hover:text-[#16428c]">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="hidden sm:inline">Track</span>
+                </div>
+                <!-- Search Button -->
+                <div class="flex items-center gap-1 text-sm cursor-pointer hover:text-[#16428c]">
+                    <i class="fas fa-search"></i>
+                    <span class="hidden sm:inline">Search</span>
+                </div>
+                <!-- Hamburger Menu Button -->
+                <button id="mobile-menu-button" 
+                        class="md:hidden text-2xl text-gray-700 hover:text-[#16428c] transition">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-6 py-5 flex flex-col space-y-4 text-base font-medium">   <!-- Reduced spacing -->
+                <a href="{% url 'home' %}" class="hover:text-[#16428c] transition py-2">HOME</a>
+                <a href="{% url 'tracking:track_shipment' %}" class="hover:text-[#16428c] transition py-2">TRACK</a>
+                <a href="{% url 'about' %}" class="hover:text-[#16428c] transition py-2">ABOUT</a>
+                <a href="{% url 'contact' %}" class="hover:text-[#16428c] transition py-2">CONTACT</a>
+                <a href="{% url 'faq' %}" class="hover:text-[#16428c] transition py-2">FAQS</a>
+                <a href="{% url 'services' %}" class="hover:text-[#16428c] transition py-2">SERVICES</a>
+                <a href="{% url 'home' %}#quote-form" class="bg-[#16428c] text-white px-6 py-3.5 rounded-xl text-center font-medium hover:bg-[#0f2f66] transition mt-4">
+                    BOOK QUOTE
+                </a>
+            </div>
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+    
+    <footer class="bg-[#f8fafc] pt-8 pb-8">
+        <!-- Main Footer Content -->
+        <div class="fixed-side-padding md:mt-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+                
+                <!-- Logo & Contact -->
+                <div class="lg:col-span-4">
+                    <div class="inline-block mb-6">
+                        <a href="{% url 'home' %}">
+                            <img src="{% static 'images/LGG Logo.png' %}" 
+                                alt="LGG Freights Logo" 
+                                class="h-14 md:h-16 w-auto">
+                        </a>
+                    </div>
+
+                    <div class="space-y-1 md:space-y-3 text-gray-700">
+                        <p class="font-medium flex items-center gap-2">
+                            <i class="fas fa-phone"></i> 
+                            +1-800-555-5555
+                        </p>
+                        <p>
+                            <a href="mailto:support@lggautoparts.com" class="hover:text-[#16428c] transition">
+                                support@lggautoparts.com
+                            </a>
+                        </p>
+                        <p class="text-sm leading-relaxed">
+                            123 Freight Lane, Houston, TX 77001, USA
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Menu Links -->
+                <div class="lg:col-span-8">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-6 lg:gap-6">
+                        
+                        <!-- Column 1 -->
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2 md:mb-5 text-gray-900">LGG Auto Parts</h3>
+                            <ul class="space-y-1 md:space-y-3 text-gray-600">
+                                <li><a href="{% url 'home' %}" class="hover:text-[#16428c] transition">Home</a></li>
+                                <li><a href="{% url 'tracking:track_shipment' %}" class="hover:text-[#16428c] transition">Track</a></li>
+                                <li><a href="{% url 'services' %}" class="hover:text-[#16428c] transition">Services</a></li>
+                                <li><a href="#" class="hover:text-[#16428c] transition">Book Quote</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Column 2 -->
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2 md:mb-5 text-gray-900">About Us</h3>
+                            <ul class="space-y-1 md:space-y-3 text-gray-600">
+                                <li><a href="{% url 'about' %}" class="hover:text-[#16428c] transition">About</a></li>
+                                <li><a href="{% url 'contact' %}" class="hover:text-[#16428c] transition">Contact</a></li>
+                                <li><a href="{% url 'faq' %}" class="hover:text-[#16428c] transition">FAQ's</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Column 3 -->
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2 md:mb-5 text-gray-900">Resources</h3>
+                            <ul class="space-y-1 md:space-y-3 text-gray-600">
+                                <li><a href="#" class="hover:text-[#16428c] transition">Policies</a></li>
+                                <li><a href="#" class="hover:text-[#16428c] transition">Payments</a></li>
+                                <li><a href="#" class="hover:text-[#16428c] transition">Return & Refunds</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Column 4 -->
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2 md:mb-5 text-gray-900">Stay Up To Date</h3>
+                            <ul class="space-y-1 md:space-y-3 text-gray-600">
+                                <li><a href="#" class="hover:text-[#16428c] transition">LGG Freights Blog</a></li>
+                                <li><a href="#" class="hover:text-[#16428c] transition">Booking Calender</a></li>
+                            </ul>
+                        </div>
+
+                    </div>            
+                </div>
+            </div>
+
+            <!-- Bottom Bar - Moved Outside the Grid -->
+            <div class="border-t border-gray-300 mt-12 md:mt-16 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <p class="text-gray-500 text-sm">
+                        © 2026 by LGG Freights. All rights reserved.
+                        <!-- <a href="https://www.wix.com" target="_blank" class="text-[#16428c] hover:underline">Wix Studio</a> -->
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<!-- Floating Chat Button -->
+    <button onclick="alert('Chat opened! (Demo)')"
+            class="fixed bottom-8 right-8 bg-[#16428c] hover:bg-[#0f2f66] text-white px-6 py-3 rounded-full flex items-center gap-2 shadow-lg transition z-50">
+        <i class="fas fa-comment-dots"></i>
+        <span class="font-medium">Let's Chat!</span>
+    </button>
+
+    <script>
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        
+        // Optional: Change icon between bars and X
+        const icon = menuButton.querySelector('i');
+        if (icon.classList.contains('fa-bars')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+    </script>
+
+</body>
+</html>

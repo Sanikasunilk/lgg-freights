@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="max-w-4xl mx-auto py-8 md:py-12 px-4 md:px-6">
+  <h1 class="text-3xl md:text-4xl font-bold text-center mb-2 text-gray-900">Track Your Shipment</h1>
+  <p class="text-center text-gray-600 mb-10">Enter your tracking number below</p>
+
+  <!-- Search Form -->
+  <form method="post" class="max-w-lg mx-auto mb-12">
+    {% csrf_token %}
+    <div class="flex gap-3">
+      <input type="text" name="tracking_id" placeholder="LGGXXXXXXXXXX" 
+             class="flex-1 border-2 border-gray-300 rounded-2xl px-5 py-4 md:py-4 text-base md:text-lg focus:outline-none focus:border-[#16428c]" required>
+      <button type="submit" 
+              class="bg-[#16428c] hover:bg-blue-900 text-white px-8 md:px-10 py-4 rounded-2xl font-semibold transition whitespace-nowrap">
+        Track
+      </button>
+    </div>
+  </form>
+
+  {% if error %}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-6 py-5 rounded-2xl text-center">{{ error }}</div>
+  {% endif %}
+
+  {% if shipment %}
+    <div class="bg-white rounded-3xl shadow-2xl p-6 md:p-8">
+      
+      <!-- Tracking ID + Status -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div>
+          <p class="text-sm text-gray-500">Tracking ID</p>
+          <p class="text-2xl md:text-3xl font-bold text-[#16428c]">{{ shipment.tracking_id }}</p>
+        </div>
+        
+        <!-- Status Badge - Moved to top right -->
+        <span class="px-6 py-3 rounded-2xl text-base md:text-lg font-semibold self-start md:self-auto
+          {% if shipment.status == 'Delivered' %}bg-green-100 text-green-700
+          {% elif shipment.status == 'In Transit' %}bg-blue-100 text-blue-700
+          {% else %}bg-amber-100 text-amber-700{% endif %}">
+          {{ shipment.status }}
+        </span>
+      </div>
+
+      <!-- Shipment Details -->
+      <div class="grid md:grid-cols-2 gap-6 mb-10 text-gray-700">
+        <div>
+          <p><strong>Name:</strong> {{ shipment.full_name }}</p>
+          <p><strong>Origin:</strong> {{ shipment.origin }}</p>
+          <p><strong>Destination:</strong> {{ shipment.destination }}</p>
+        </div>
+        <div>
+          <p><strong>Current Location:</strong> {{ shipment.current_location|default:"Update pending..." }}</p>
+          <p><strong>Last Updated:</strong> {{ shipment.updated_at|date:"d M, Y - h:i A" }}</p>
+        </div>
+      </div>
+
+      <!-- History Timeline -->
+      <h3 class="text-xl font-semibold mb-6">Shipment History</h3>
+      <div class="space-y-8 border-l-4 border-[#16428c] pl-6 ml-4">
+        {% for entry in shipment.history.all %}
+        <div>
+          <div class="flex gap-4">
+            <div class="w-28 text-right text-sm text-gray-500">
+              {{ entry.timestamp|date:"d M Y" }}<br>
+              <span class="text-xs">{{ entry.timestamp|time:"h:i A" }}</span>
+            </div>
+            <div class="flex-1">
+              <p class="font-semibold text-lg">{{ entry.status }}</p>
+              <p class="text-gray-600">{{ entry.location }}</p>
+              {% if entry.description %}
+                <p class="text-sm text-gray-500 mt-1">{{ entry.description }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <p class="text-gray-500 italic pl-4">No tracking history available yet.</p>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}
