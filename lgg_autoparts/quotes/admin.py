@@ -65,7 +65,7 @@ LGG Auto Parts Team
                 message=message.strip(),
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[quote.email],
-                fail_silently=False,
+                fail_silently=True,
             )
         except Exception as e:
             print(f"Email failed: {e}")

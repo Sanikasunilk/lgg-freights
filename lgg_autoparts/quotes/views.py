@@ -5,6 +5,10 @@ from django.conf import settings
 from .forms import QuoteRequestForm
 
 
+def email_is_configured():
+    return bool(settings.EMAIL_HOST_USER and settings.EMAIL_HOST_PASSWORD)
+
+
 def quote_form(request):
     if request.method == 'POST':
         form = QuoteRequestForm(request.POST)
@@ -43,6 +47,10 @@ Best regards,
 LGG Freights Team
 """
 
+            if not email_is_configured():
+                messages.warning(request, "Quote saved, but email notification is not configured.")
+                return redirect('home')
+
             try:
                 # Send to Admin (You)
                 send_mail(
@@ -50,7 +58,7 @@ LGG Freights Team
                     message=admin_message.strip(),
                     from_email=settings.DEFAULT_FROM_EMAIL,
                     recipient_list=[settings.ADMIN_EMAIL],   # Your email
-                    fail_silently=False,
+                    fail_silently=True,
                 )
 
                 # Send Thank You to Customer
@@ -59,7 +67,7 @@ LGG Freights Team
                     message=customer_message.strip(),
                     from_email=settings.DEFAULT_FROM_EMAIL,
                     recipient_list=[quote.email],
-                    fail_silently=False,
+                    fail_silently=True,
                 )
 
                 messages.success(request, "Quote request submitted successfully! We will contact you soon.")

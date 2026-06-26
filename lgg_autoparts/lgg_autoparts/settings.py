@@ -152,6 +152,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'lggautoparts@gmail.com'        # Your Gmail
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+EMAIL_TIMEOUT = int(os.environ.get('EMAIL_TIMEOUT', '10'))
 
 # Optional: Default sender
 DEFAULT_FROM_EMAIL = 'LGG Auto Parts <lggautoparts@gmail.com>'
