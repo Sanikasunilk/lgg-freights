@@ -5,19 +5,19 @@ from django.conf import settings
 from .forms import QuoteRequestForm
 
 
-def email_is_configured():
-    return bool(settings.EMAIL_HOST_USER and settings.EMAIL_HOST_PASSWORD)
-
-
 def quote_form(request):
     if request.method == 'POST':
         form = QuoteRequestForm(request.POST)
         if form.is_valid():
             quote = form.save()
 
-            # === Email to Admin (You) ===
-            admin_subject = f"New Quote Request from {quote.full_name}"
-            admin_message = f"""
+            # Default success message
+            messages.success(request, "Quote request submitted successfully! We'll contact you soon.")
+
+            try:
+                # === Email to Admin ===
+                admin_subject = f"New Quote Request from {quote.full_name}"
+                admin_message = f"""
 New Freight Quote Request Received!
 
 Name: {quote.full_name}
@@ -27,54 +27,40 @@ Destination: {quote.destination}
 Loading Date: {quote.loading_date}
 Message: {quote.message or 'No message provided'}
 Submitted at: {quote.created_at}
-"""
+                """.strip()
 
-            # === Thank You Email to Customer ===
-            customer_subject = "Thank You for Your Quote Request - LGG Freights"
-            customer_message = f"""
+                send_mail(
+                    subject=admin_subject,
+                    message=admin_message,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[settings.ADMIN_EMAIL],
+                    fail_silently=False,
+                )
+
+                # === Thank You Email to Customer ===
+                customer_subject = "Thank You for Your Quote Request - LGG Freights"
+                customer_message = f"""
 Dear {quote.full_name},
 
 Thank you for requesting a freight quote with LGG Freights.
 
 We have received your request and will get back to you shortly with the best rates.
 
-Your Quote Details:
-- Origin: {quote.origin}
-- Destination: {quote.destination}
-- Loading Date: {quote.loading_date}
-
 Best regards,
 LGG Freights Team
-"""
+                """.strip()
 
-            if not email_is_configured():
-                messages.warning(request, "Quote saved, but email notification is not configured.")
-                return redirect('home')
-
-            try:
-                # Send to Admin (You)
-                send_mail(
-                    subject=admin_subject,
-                    message=admin_message.strip(),
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=[settings.ADMIN_EMAIL],   # Your email
-                    fail_silently=True,
-                )
-
-                # Send Thank You to Customer
                 send_mail(
                     subject=customer_subject,
-                    message=customer_message.strip(),
+                    message=customer_message,
                     from_email=settings.DEFAULT_FROM_EMAIL,
                     recipient_list=[quote.email],
-                    fail_silently=True,
+                    fail_silently=False,
                 )
 
-                messages.success(request, "Quote request submitted successfully! We will contact you soon.")
-
             except Exception as e:
-                print("Email Error:", e)
-                messages.warning(request, "Quote saved, but email notification failed.")
+                print("Email Error:", str(e))  # Visible in Render Logs
+                messages.warning(request, "Quote saved successfully. Email notification failed.")
 
             return redirect('home')
 
